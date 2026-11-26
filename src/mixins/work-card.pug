@@ -1,0 +1,19 @@
+//- +work-card(work, i): картка роботи портфоліо; перші три - на першому екрані
+mixin work-card(work, i)
+  - const aboveFold = i < 3;
+  article.card(data-category=work.tags.join(" "))
+    a.card__link(href="#works")
+      +picture(work.image, work.alt, {
+        cls: "card__img",
+        widths: [400, 800],
+        width: 800,
+        height: 632,
+        sizes: "(min-width: 1280px) 357px, (min-width: 768px) 50vw, 100vw",
+        lazy: !aboveFold,
+        priority: i === 0,
+      })
+      .card__overlay
+        span.card__plus
+          +icon("plus")
+        h3.card__title #{ work.title }
+        span.card__category #{ work.category }

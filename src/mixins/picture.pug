@@ -1,0 +1,23 @@
+//- +picture(name, alt, opts): адаптивне зображення AVIF / WebP / JPEG.
+//- name - базове ім'я файлів (work-1 → work-1-400.avif ...), widths - масив ширин,
+//- width/height - розміри найбільшого файлу (щоб браузер резервував місце).
+mixin picture(name, alt, opts = {})
+  - const { widths = [400, 800], sizes = "100vw", cls = "", lazy = true, priority = false } = opts;
+  - const largest = widths[widths.length - 1];
+  - const width = opts.width || largest;
+  - const height = opts.height || largest;
+  - const path = `/src/assets/images/${name}`;
+  - const srcset = (ext) => widths.map((w) => `${path}-${w}.${ext} ${w}w`).join(", ");
+  picture
+    source(type="image/avif" srcset=srcset("avif") sizes=sizes)
+    source(type="image/webp" srcset=srcset("webp") sizes=sizes)
+    img(
+      class=cls
+      src=`${path}-${largest}.jpg`
+      alt=alt
+      width=width
+      height=height
+      loading=lazy ? "lazy" : undefined
+      fetchpriority=priority ? "high" : undefined
+      decoding="async"
+    )

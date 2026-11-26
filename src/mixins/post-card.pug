@@ -1,0 +1,21 @@
+//- +post-card(post): запис журналу
+mixin post-card(post)
+  article.post
+    +picture(post.image, "", {
+      cls: "post__img",
+      widths: [150, 300],
+      width: 300,
+      height: 300,
+      sizes: "(min-width: 768px) 150px, 96px",
+    })
+    .post__body
+      p.post__meta
+        time(datetime=post.iso) #{ post.date }
+        |
+        | / #{ post.category }
+      h3.post__title #{ post.title }
+      p.post__text #{ post.text }
+      a.post__link(href="#journal")
+        | Read more
+        +icon("chevron", 8)
+        span.visually-hidden about #{ post.title }
