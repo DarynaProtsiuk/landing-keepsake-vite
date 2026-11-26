@@ -1,21 +1,36 @@
 doctype html
+//- Міксини підключаємо після doctype, щоб void-теги рендерились без "/"
+include ../mixins/icon
+include ../mixins/btn
+include ../mixins/picture
+include ../mixins/work-card
+include ../mixins/socials
+include ../mixins/section-heading
+include ../mixins/post-card
+
 html(lang="en")
-    head
-        block meta
-            meta(charset="utf-8")
-            meta(name="viewport" content="width=device-width, initial-scale=1")
-        block title
-            title Vite Pug Template
-        block fonts
-        block main-scripts
-        block styles
-            link(rel="stylesheet" href="/src/styles/main.scss")
-    body
-        block data
-        block header
-            header.page-header header
-        block content
-            main.page-main content
-        block footer
-            footer.page-footer footer
-        block add-scripts
+  head
+    block meta
+      meta(charset="utf-8")
+      meta(name="viewport" content="width=device-width, initial-scale=1")
+      meta(name="theme-color" content="#F95858")
+    block title
+      title Keepsake — digital &amp; branding agency
+    block styles
+      link(rel="stylesheet" href="/src/styles/main.scss")
+  body#top
+    a.skip-link(href="#main") Skip to content
+
+    //- Дані сторінки підключаються сторінкою через block data
+    block data
+
+    block header
+      include ../components/header
+
+    main#main
+      block content
+
+    block footer
+      include ../components/footer
+
+    block scripts
