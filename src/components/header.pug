@@ -1,1 +1,40 @@
-header.site-header
+header.header
+  .container.header__inner
+    a.logo(href="#top")
+      span.visually-hidden Keepsake
+      span.logo__mark(aria-hidden="true") K
+      span.logo__text(aria-hidden="true") eepsake
+
+    nav#site-nav.nav(popover aria-label="Main navigation")
+      ul.nav__list
+        each item in navItems
+          li
+            a.nav__link(
+              class={ "nav__link--active": item.active }
+              href=item.href
+              aria-current=item.active ? "page" : undefined
+            ) #{ item.label }
+
+      .nav__actions
+        +btn("Contact us", "#contact").nav__contact-btn
+          +icon("mail", 14)
+        a.fav(href="#works")
+          +icon("heart")
+          span.fav__text Favourites
+
+      .nav__contacts
+        p.nav__hello Say hello
+        a.nav__contact-link(href=`mailto:${contacts.email}`) #{ contacts.email }
+        a.nav__contact-link(href=`tel:${contacts.phone}`) #{ contacts.phoneLabel }
+        +socials(socials)
+
+    button.nav-toggle(
+      type="button"
+      popovertarget="site-nav"
+      aria-controls="site-nav"
+      aria-label="Menu"
+    )
+      span.nav-toggle__burger
+        +icon("burger", 22)
+      span.nav-toggle__close
+        +icon("close", 22)
