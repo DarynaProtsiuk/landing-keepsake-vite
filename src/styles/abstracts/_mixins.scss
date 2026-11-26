@@ -1,0 +1,72 @@
+@use 'functions' as *;
+
+// Скорочення font: ваги, розміру, висоти рядка та гарнітури
+@mixin font($weight, $size, $line-height, $family: var(--font-body)) {
+  font: #{$weight} #{$size}/#{$line-height} #{$family};
+}
+
+// Заголовки та підписи: верхній регістр і трекінг
+@mixin caps($spacing: 1px) {
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+}
+
+// Візуально приховує елемент, лишаючи його для скрінрідерів
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin focus-ring($color: var(--color-text-dark), $offset: 2px) {
+  outline: 2px solid $color;
+  outline-offset: $offset;
+}
+
+@mixin button-reset {
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+// Плавні переходи вмикаються лише якщо користувач не просив зменшити анімацію
+@mixin smooth(
+  $value: (
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+  )
+) {
+  @media (prefers-reduced-motion: no-preference) {
+    transition: $value;
+  }
+}
+
+// Однакова тонка риска-акцент (заголовки секцій, картки)
+@mixin accent-line($width, $height: 2px) {
+  display: block;
+  width: $width;
+  height: $height;
+  background: var(--color-accent);
+  content: '';
+}
+
+// Елемент ряду на Flexbox: кількість колонок і проміжок задають --cols та --list-gap батька
+@mixin column-item {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--list-gap)) / var(--cols));
+  min-width: 0;
+}
