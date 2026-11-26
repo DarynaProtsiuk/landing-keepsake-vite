@@ -1,0 +1,8 @@
+//- +socials(items): список соцмереж, один шаблон для шапки й футера
+mixin socials(items)
+  ul.socials
+    each item in items
+      li
+        a.social(class=`social--${item.id}` href="#top" aria-label=item.label)
+          svg(viewBox="0 0 32 32" aria-hidden="true")
+            text(x="16" y=item.y text-anchor="middle") #{ item.short }

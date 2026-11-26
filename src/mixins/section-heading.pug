@@ -1,0 +1,6 @@
+//- +section-heading(id, title): заголовок секції з необов'язковим підзаголовком через block
+mixin section-heading(id, title)
+  h2.section-title(id=id) #{ title }
+  if block
+    p.section-lead
+      block
