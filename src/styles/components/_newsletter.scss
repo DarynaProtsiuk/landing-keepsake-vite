@@ -1,0 +1,17 @@
+@use '../abstracts' as *;
+
+.newsletter {
+  @include mq(md) {
+    flex: 0 0 332px;
+  }
+
+  @include mq(lg) {
+    flex: 0 0 420px;
+  }
+
+  &__text {
+    margin-bottom: var(--space-4);
+    font-size: rem(13);
+    line-height: rem(20);
+  }
+}

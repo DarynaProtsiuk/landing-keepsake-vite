@@ -1,0 +1,30 @@
+@use '../abstracts' as *;
+
+// Повідомлення про успіх замість полів форми (через :target)
+.success {
+  display: none;
+
+  &:target {
+    display: block;
+  }
+
+  &:target ~ .form {
+    display: none;
+  }
+
+  &__msg {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    font-size: rem(13);
+    color: var(--color-white);
+    background: var(--color-teal-bg);
+    border: 1px solid var(--color-teal);
+  }
+
+  &__note {
+    margin-top: var(--space-3);
+    font-size: rem(12);
+  }
+}
