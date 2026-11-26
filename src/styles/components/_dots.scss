@@ -1,0 +1,17 @@
+// Індикатор слайдера: 3 риски
+.dots {
+  display: flex;
+  gap: var(--space-1);
+  margin-left: auto;
+
+  &__item {
+    width: 6px;
+    height: 2px;
+    background: var(--color-border);
+
+    &--active {
+      width: 16px;
+      background: var(--color-accent);
+    }
+  }
+}
