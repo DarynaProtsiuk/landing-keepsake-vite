@@ -1,0 +1,89 @@
+@use '../abstracts' as *;
+
+// Ідентифікатори фільтра збігаються з масивом filters у src/data/works.pug
+$filter-ids: 'all', 'branding', 'identity', 'print', 'web', 'motion';
+
+.works {
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+
+    @include mq(md) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-7);
+    }
+  }
+
+  // Сітка: mobile - 1 колонка / 5 карток, md - 2 колонки / 8, lg - 3 колонки / 9
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--works-gap);
+
+    > .card:nth-child(n + 6) {
+      display: none;
+    }
+
+    @include mq(md) {
+      grid-template-columns: repeat(2, 1fr);
+
+      > .card:nth-child(n + 6) {
+        display: block;
+      }
+
+      > .card:nth-child(n + 9) {
+        display: none;
+      }
+    }
+
+    @include mq(lg) {
+      grid-template-columns: repeat(3, 1fr);
+
+      > .card:nth-child(n + 9) {
+        display: block;
+      }
+    }
+  }
+
+  &__more {
+    display: flex;
+    margin-top: var(--space-7);
+
+    .btn {
+      width: 100%;
+    }
+
+    @include mq(md) {
+      justify-content: center;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}
+
+@each $id in $filter-ids {
+  // активний чипс
+  .filter--#{$id}:checked ~ .works__head .chip--#{$id} {
+    color: var(--color-white);
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  // focus-visible для прихованих radio
+  .filter--#{$id}:focus-visible ~ .works__head .chip--#{$id} {
+    @include focus-ring;
+  }
+
+  // фільтрація за data-category («All» показує все)
+  @if $id != 'all' {
+    .filter--#{$id}:checked ~ .works__grid .card:not([data-category~='#{$id}']) {
+      display: none;
+    }
+  }
+}

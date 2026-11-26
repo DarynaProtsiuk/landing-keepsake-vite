@@ -1,0 +1,12 @@
+@use '../abstracts' as *;
+
+// Прихована радіокнопка фільтра: стан :checked керує чипсами й сіткою через ~
+.filter {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  opacity: 0;
+  clip-path: inset(50%);
+}
