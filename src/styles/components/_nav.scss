@@ -1,0 +1,145 @@
+@use '../abstracts' as *;
+
+// Мобільне меню - випадаюче під header (Popover API); з md - рядок у шапці
+.nav {
+  position: fixed;
+  inset: var(--header-h) 0 auto;
+  width: auto;
+  height: auto;
+  max-height: calc(100dvh - var(--header-h));
+  margin: 0;
+  padding: 0 var(--gutter);
+  overflow-y: auto;
+  color: var(--color-text);
+  background: var(--color-white);
+  border: 0;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 8%);
+
+  &:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include mq(md) {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  @include mq(lg) {
+    gap: var(--space-7);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @include mq(md) {
+      flex-direction: row;
+      gap: var(--space-6);
+    }
+
+    @include mq(lg) {
+      gap: var(--space-8);
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) 0;
+    color: var(--color-text-dark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+
+    @include font(400, rem(18), 1.2, var(--font-heading));
+    @include caps;
+    @include smooth(color 0.2s);
+
+    // шеврон справа, тільки в мобільному меню
+    &::after {
+      width: 7px;
+      height: 7px;
+      border-top: 1.5px solid var(--color-muted);
+      border-right: 1.5px solid var(--color-muted);
+      transform: rotate(45deg);
+      content: '';
+
+      @include mq(md) {
+        display: none;
+      }
+    }
+
+    &:hover,
+    &--active,
+    &[aria-current='page'] {
+      color: var(--color-accent);
+    }
+
+    @include mq(md) {
+      padding: 0;
+      font-size: var(--fs-nav);
+      border-bottom: 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: var(--space-6) 0;
+
+    @include mq(md) {
+      margin: 0;
+    }
+  }
+
+  &__contact-btn {
+    width: 100%;
+
+    @include mq(md) {
+      display: none;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-inline: calc(-1 * var(--gutter));
+    padding: var(--space-6) var(--gutter);
+    background: var(--color-bg-light);
+
+    .socials {
+      margin-top: var(--space-2);
+    }
+
+    @include mq(md) {
+      display: none;
+    }
+  }
+
+  &__hello {
+    color: var(--color-muted);
+
+    @include font(400, rem(11), 1.2, var(--font-heading));
+    @include caps(1.5px);
+  }
+
+  &__contact-link {
+    color: var(--color-text-dark);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+}

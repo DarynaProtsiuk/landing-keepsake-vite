@@ -1,0 +1,33 @@
+@use '../abstracts' as *;
+
+// Бургер 40×40; у відкритому стані показує хрестик
+.nav-toggle {
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-dark);
+
+  @include flex-center;
+  @include button-reset;
+
+  @include mq(md) {
+    display: none;
+  }
+
+  &__burger {
+    display: flex;
+  }
+
+  &__close {
+    display: none;
+  }
+}
+
+.nav:popover-open ~ .nav-toggle {
+  .nav-toggle__burger {
+    display: none;
+  }
+
+  .nav-toggle__close {
+    display: flex;
+  }
+}

@@ -1,0 +1,21 @@
+@use '../abstracts' as *;
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-text-dark);
+  text-decoration: none;
+
+  @include font(700, var(--fs-logo), 1, var(--font-logo));
+
+  &__mark {
+    width: var(--logo-mark);
+    height: var(--logo-mark);
+    border-radius: 50%;
+    color: var(--color-white);
+    background: var(--color-text-dark);
+
+    @include flex-center;
+  }
+}
