@@ -1,0 +1,58 @@
+@use '../abstracts' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  text-size-adjust: 100%;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  padding-top: var(--header-h);
+  color: var(--color-text);
+  background: var(--color-white);
+
+  @include font(400, rem(14), rem(22));
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+blockquote,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+svg {
+  flex: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  @include focus-ring;
+}

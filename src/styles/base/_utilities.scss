@@ -1,0 +1,14 @@
+@use '../abstracts' as *;
+
+// Кольори для inline-SVG (var() у presentation-атрибутах не використовуємо)
+@each $name in ('teal', 'text', 'muted', 'accent', 'white', 'bg-light') {
+  .f-#{$name} {
+    fill: var(--color-#{$name});
+  }
+}
+
+@each $name in ('muted', 'text', 'footer') {
+  .s-#{$name} {
+    stroke: var(--color-#{$name});
+  }
+}
