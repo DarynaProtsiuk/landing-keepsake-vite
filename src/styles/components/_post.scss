@@ -1,0 +1,55 @@
+@use '../abstracts' as *;
+
+.post {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+
+  // <picture> - flex-елемент: не стискається, розмір задає img усередині
+  picture {
+    flex: none;
+  }
+
+  &__img {
+    width: var(--post-img);
+    height: var(--post-img);
+    object-fit: cover;
+  }
+
+  &__meta {
+    color: var(--color-muted);
+
+    @include font(400, rem(11), 1.3, var(--font-heading));
+    @include caps;
+  }
+
+  &__title {
+    margin: var(--space-1) 0 var(--space-2);
+    color: var(--color-text-dark);
+
+    @include font(400, rem(15), 1.3, var(--font-heading));
+    @include caps;
+  }
+
+  &__text {
+    margin-bottom: var(--space-2);
+    font-size: rem(13);
+    line-height: rem(20);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-accent);
+    text-decoration: none;
+
+    @include font(400, rem(11), 1.3, var(--font-heading));
+    @include caps;
+    @include smooth(color 0.2s);
+
+    &:hover {
+      color: var(--color-accent-hover);
+    }
+  }
+}

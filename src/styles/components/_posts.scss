@@ -1,0 +1,18 @@
+@use '../abstracts' as *;
+
+.posts {
+  --cols: 1;
+  --list-gap: var(--space-8);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-7) var(--list-gap);
+
+  @include mq(lg) {
+    --cols: 2;
+  }
+
+  > article {
+    @include column-item;
+  }
+}
