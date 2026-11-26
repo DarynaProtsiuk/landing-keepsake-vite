@@ -1,18 +1,30 @@
 extends ../layouts/main
 
-block fonts
-    include ../includes/fonts
+//- Додаємо до meta макета, не замінюючи charset і viewport
+block append meta
+  include ../includes/meta
 
-append meta
-    include ../includes/meta
+block title
+  title Keepsake — digital &amp; branding agency
+
+//- Шрифти й favicon ідуть перед основним файлом стилів
+block prepend styles
+  include ../includes/fonts
+
+block data
+  include ../data/nav
+  include ../data/socials
+  include ../data/works
+  include ../data/services
+  include ../data/clients
+  include ../data/journal
+  include ../data/footer
 
 block content
-  main
-    h1 Keepsake
-
-block header
-    include ../components/header
-
-
-block footer
-    include ../components/footer
+  include ../components/sections/hero
+  include ../components/sections/works
+  include ../components/sections/cta
+  include ../components/sections/services
+  include ../components/sections/stats
+  include ../components/sections/clients
+  include ../components/sections/journal
