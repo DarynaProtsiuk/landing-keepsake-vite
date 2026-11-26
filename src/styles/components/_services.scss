@@ -1,0 +1,62 @@
+@use '../abstracts' as *;
+
+// Списки в ряд на Flexbox: кількість колонок задає --cols, проміжок - --list-gap
+.services {
+  --cols: 2;
+  --list-gap: var(--space-5);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-7) var(--list-gap);
+
+  @include mq(md) {
+    --list-gap: var(--space-8);
+
+    row-gap: var(--space-8);
+  }
+
+  @include mq(lg) {
+    --cols: 4;
+    --list-gap: var(--space-6);
+  }
+
+  > li {
+    @include column-item;
+  }
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__icon {
+    width: var(--service-icon);
+    height: var(--service-icon);
+    margin-bottom: var(--space-4);
+    border-radius: 50%;
+    background: var(--color-bg-light);
+
+    @include flex-center;
+
+    svg {
+      width: 42%;
+      height: auto;
+    }
+  }
+
+  &__title {
+    margin-bottom: var(--space-2);
+    color: var(--color-text-dark);
+
+    @include font(400, var(--fs-nav), 1.3, var(--font-heading));
+    @include caps;
+  }
+
+  &__text {
+    max-width: 240px;
+    font-size: rem(12);
+    line-height: rem(19);
+  }
+}
