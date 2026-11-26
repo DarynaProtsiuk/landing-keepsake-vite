@@ -1,0 +1,24 @@
+section#works.section.container.works(aria-labelledby="works-title")
+  //- Радіокнопки фільтра мають бути сусідами .works__head і .works__grid (селектор ~)
+  each filter, i in filters
+    input.filter(
+      class=`filter--${filter.id}`
+      type="radio"
+      name="works-filter"
+      id=`filter-${filter.id}`
+      checked=i === 0
+    )
+
+  .works__head
+    h2#works-title.section-title Our awesome works
+    ul.chips(aria-label="Filter works by category")
+      each filter in filters
+        li
+          label.chip(class=`chip--${filter.id}` for=`filter-${filter.id}`) #{ filter.label }
+
+  .works__grid
+    each work, i in works
+      +work-card(work, i)
+
+  .works__more
+    button.btn.btn--secondary(type="button") Load more works
