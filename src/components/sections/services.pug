@@ -1,0 +1,11 @@
+section#services.section.container(aria-labelledby="services-title")
+  +section-heading("services-title", "What do we do")
+    | We are a small team of designers and makers who help brands look their best online and offline.
+
+  ul.services
+    each service in services
+      li.service
+        span.service__icon(aria-hidden="true")
+          +icon(service.icon, 40)
+        h3.service__title #{ service.title }
+        p.service__text #{ service.text }
