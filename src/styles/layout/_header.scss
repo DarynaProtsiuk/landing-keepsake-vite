@@ -1,0 +1,19 @@
+@use '../abstracts' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: var(--color-white);
+  box-shadow: 0 1px 0 var(--color-border);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
